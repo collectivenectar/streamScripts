@@ -1,0 +1,34 @@
+{
+  "name": "streamscripts",
+  "version": "1.0.0",
+  "description": "search transcripts from Learnwithleons 2022 twitch streams",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/collectivenectar/streamScripts.git"
+  },
+  "keywords": [
+    "transcript",
+    "search"
+  ],
+  "author": "Jonathan Harvey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/collectivenectar/streamScripts/issues"
+  },
+  "homepage": "https://github.com/collectivenectar/streamScripts#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
