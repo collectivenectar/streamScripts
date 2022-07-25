@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
 const scriptSchema = new mongoose.Schema({
-  data/timestamp: {
+  timestamp: {
     type: String,
     required: true
   },
-  data/entry: {
+  entry: {
     type: String,
     required: true
   }
 })
-module.exports = mongoose.model('transModel', scriptSchema, 'transcript')
+module.exports = mongoose.model('transModel', scriptSchema, 'leonnoel.courseVids')
