@@ -11,29 +11,67 @@ require('dotenv').config()
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 // connect to db
 
 mongoose.connect(process.env.DB_CONNECTION,
     {useNewUrlParser: true},
-    () => {console.log('Connected to database')}
+    (error) => {
+      if(error){
+        console.log(error)
+      }
+      console.log('Connected to database')}
 )
 
 // ROUTES
 
-// search by single word
-
-app.post("/search", async (request, response) => {
-  return Transcript.find({entry: {$regex: String(request.body.query)}})
+app.post("/search/entry/allOrdered", async (request, response) => {
+  // This setup is for regex search of any ENTRY field containing all words, in that order
+  let lowerCasedEntry = String(request.body.entry).toLowerCase()
+  return Transcript.find({"entry": {$regex: String(lowerCasedEntry)}})
   .exec()
   .then((transcript) => {
     console.log(transcript.length)
-    return transcript
+    response.send(transcript)
   })
   .catch((err) => {
     console.log(err)
     return 'error occurred'
+  })
+})
+
+app.post("/search/entry/allUnordered", async (request, response) => {
+  // This setup is for regex search of any ENTRY field containing all of the words(any order)
+  const queryString = request.body.entry.toLowerCase()
+  const queryStrings = queryString.split(" ")
+  let allQueries = []
+  queryStrings.forEach(element => {
+    allQueries.push({"entry": {$regex: String(element)}})
+  })
+  return Transcript.find({$and: allQueries})
+  .exec()
+  .then((transcript) => {
+    response.send(transcript)
+  })
+  .catch((err) => {
+    console.log(err)
+    return 'error occurred'
+  })
+})
+
+app.post("/search/timestamp/byCourseNumber", async (request, response) => {
+  // This setup is for regex search of any TIMESTAMP related to a course number (1-41 currently)
+  let courseNumber = request.body.timestamp
+  return Transcript.find({timestamp: new RegExp("^" + courseNumber + "-")})
+  .exec()
+  .then((transcript) => {
+    response.send(transcript)
+  })
+  .catch((err) => {
+    console.log(err)
+    return `error occurred: ${err}`
   })
 })
 
