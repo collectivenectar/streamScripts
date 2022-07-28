@@ -17,3 +17,9 @@ one at a time into a JSON, then converted to a comma separated values file. The 
 .csv file using two data fields -- transcript timestamp and transcript string -- into a mongoDB collection.
 
 This app was built using mongoDB, node.js, express.js, and EJS.
+
+Here are some mockups:
+
+<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsBrowse.png?raw=true" width="683" height="384">
+
+<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsLookup.png?raw=true" width="683" height="384">
