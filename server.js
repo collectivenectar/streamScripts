@@ -57,7 +57,7 @@ app.post("/search/entry/allUnordered", async (request, response) => {
   })
   .catch((err) => {
     console.log(err)
-    return 'error occurred'
+    response.status(500).send(err)
   })
 })
 
@@ -71,7 +71,7 @@ app.post("/search/timestamp/byCourseNumber", async (request, response) => {
   })
   .catch((err) => {
     console.log(err)
-    return `error occurred: ${err}`
+    response.status(500).send(err)
   })
 })
 
