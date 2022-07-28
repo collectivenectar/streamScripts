@@ -20,6 +20,6 @@ This app was built using mongoDB, node.js, express.js, and EJS.
 
 Here are some mockups:
 
-<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsBrowse.png?raw=true" width="683" height="384">
+<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsBrowse.png?raw=true" width="1000" height="784">
 
-<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsLookup.png?raw=true" width="683" height="384">
+<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/streamScriptsLookup.png?raw=true" width="1000" height="784">
