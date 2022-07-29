@@ -27,33 +27,78 @@ mongoose.connect(process.env.DB_CONNECTION,
 
 // ROUTES
 
-app.post("/search/entry/allOrdered", async (request, response) => {
+app.get("/search/entry/allOrdered", async (request, response) => {
   // This setup is for regex search of any ENTRY field containing all words, in that order
+
+  // Pagination setup
+  let perPage = 10
+  let page = 1
+
   let lowerCasedEntry = String(request.body.entry).toLowerCase()
-  return Transcript.find({"entry": {$regex: String(lowerCasedEntry)}})
-  .exec()
-  .then((transcript) => {
-    console.log(transcript.length)
-    response.send(transcript)
+  let query = {"entry": {$regex: String(lowerCasedEntry)}}
+  return Transcript.find(query).skip((perPage * page) - perPage).limit(perPage)
+  .exec((error, transcriptsList) => {
+    Transcript.count(query).exec((error, count) => {
+      if(error) return next(error)
+      if(count === 0){
+        response.render('results.ejs', {
+          transcripts: [{
+            timestamp: "0-0",
+            entry: `No results found for '${request.body.entry}'`,
+            current: 1,
+            pages: 1,
+            perPage: 1
+          }]
+        })
+      } else{
+        response.render('results.ejs', {
+          transcripts: transcriptsList,
+          current: page,
+          pages: Math.ceil(count / perPage),
+          perPage: perPage
+        })
+      }
+    })
   })
-  .catch((err) => {
-    console.log(err)
-    return 'error occurred'
-  })
+
+
+
+  // .then((transcriptsList) => {
+  //   if(transcriptsList.length === 0){
+  //     response.render('results.ejs', {transcripts: [{
+  //       timestamp: "0-0",
+  //       entry: `No results found for '${request.body.entry}'`
+  //     }]})
+  //   } else{
+  //     response.render('results.ejs', {transcripts: transcriptsList})
+  //   }
+  // })
+  // .catch((err) => {
+  //   console.log(err)
+  //   return 'error occurred'
+  // })
 })
 
-app.post("/search/entry/allUnordered", async (request, response) => {
-  // This setup is for regex search of any ENTRY field containing all of the words(any order)
-  const queryString = request.body.entry.toLowerCase()
-  const queryStrings = queryString.split(" ")
+app.get("/search/entry/allUnordered", async (request, response) => {
+  // This setup is for regex search of any ENTRY field containing all of the
+  // words (except allows any order)
+  const queryString = String(request.body.entry).toLowerCase()
+  let splitQuery = queryString.split(" ")
   let allQueries = []
-  queryStrings.forEach(element => {
+  splitQuery.forEach(element => {
     allQueries.push({"entry": {$regex: String(element)}})
   })
   return Transcript.find({$and: allQueries})
   .exec()
-  .then((transcript) => {
-    response.send(transcript)
+  .then((transcriptsList) => {
+    if(transcriptsList.length === 0){
+      response.render('results.ejs', {transcripts: [{
+        timestamp: "0-0",
+        entry: `No results found for '${request.body.entry}'`
+      }]})
+    } else{
+      response.render('results.ejs', {transcripts: transcriptsList})
+    }
   })
   .catch((err) => {
     console.log(err)
@@ -61,13 +106,13 @@ app.post("/search/entry/allUnordered", async (request, response) => {
   })
 })
 
-app.post("/search/timestamp/byCourseNumber", async (request, response) => {
+app.get("/search/timestamp/byCourseNumber", async (request, response) => {
   // This setup is for regex search of any TIMESTAMP related to a course number (1-41 currently)
-  let courseNumber = request.body.timestamp
+  const courseNumber = request.body.courseNum
   return Transcript.find({timestamp: new RegExp("^" + courseNumber + "-")})
   .exec()
   .then((transcript) => {
-    response.send(transcript)
+    response.render('results.ejs', {transcripts: transcript})
   })
   .catch((err) => {
     console.log(err)
@@ -79,7 +124,7 @@ app.post("/search/timestamp/byCourseNumber", async (request, response) => {
 
 app.get('/', async (request, response) => {
     try {
-        response.render('index.ejs')
+      response.render('index.ejs')
     } catch (err) {
         if (err) return response.status(500).send(err)
     }

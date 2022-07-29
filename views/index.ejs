@@ -9,7 +9,7 @@
 	<section class="search-entry-all-ordered">
 			<h2>Search all entries by exact phrase</h2>
 			<section class="form-container">
-					<form action="/search/entry/allOrdered" method="POST" class="search-forms all-ordered">
+					<form action="/search/entry/allOrdered" method="GET" class="search-forms all-ordered">
             <label for="all-ordered-search"></label>
 						<input id="all-ordered-search" type="text" name="entry" value="">
 						<button type="submit">Search</button>
@@ -17,11 +17,11 @@
 				</section>
 		</section>
     <section class="search-entry-all-unordered">
-  			<h2>Search all entries for any combination of words</h2>
+  			<h2>Search all entries for when these words are said together</h2>
   			<section class="form-container">
-  					<form action="/search/entry/allUnordered" method="POST" class="search-forms all-unordered">
+  					<form action="/search/entry/allUnordered" method="GET" class="search-forms all-unordered">
               <label for="all-unordered-search"></label>
-  						<input id="all-unordered-search" type="text" name="string" value="">
+  						<input id="all-unordered-search" type="text" name="entry" value="">
   						<button type="submit">Search</button>
   						</form>
   				</section>
@@ -29,29 +29,19 @@
       <section class="search-timestamp-by-course-number">
     			<h2>Browse Transcripts by Course Number</h2>
     			<section class="form-container">
-    					<form action="/search/timestamp/byCourseNumber" method="POST" class="search-forms by-course-number">
+    					<form action="/search/timestamp/byCourseNumber" method="GET" class="search-forms by-course-number">
                 <label for="selected-course">Select a Course Number to see all transcripts</label>
-    						<select id="selected-course">
-                  <option value=1 >
-                    1
-                  </option>
-                </select>
+    						<div class="browse-course-radio-container">
+                  <% for(let course = 1; course <= 41; course++ ){ %>
+                    <div class="">
+                      <input type="radio" name="courseNum" value="<%= course %>">
+                      <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
+                    </div>
+                  <% } %>
+                </div>
     						<button type="submit">submit</button>
     						</form>
     				</section>
     		</section>
-        <section id="results" class="notYet">
-          <h2>Your results:</h2>
-          <section id="pagination-container">
-            <div id="results-list-component">
-
-            </div>
-            <div id=results-pages-component>
-
-            </div>
-          </section>
-        </section>
-    <script src="/main.js">
-    </script>
   </body>
 </html>

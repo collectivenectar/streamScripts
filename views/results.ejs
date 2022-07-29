@@ -6,17 +6,101 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-	<section class="responseObjectContainer">
-			<h2>Search</h2>
-			<section class="appPostFunctionality">
-					<form action="/" method="POST" class="listHeader">
-						<input type="text" name="string" value="">
-						<textarea rows="6" cols="45" name="content">content</textarea>
-						<button type="submit">Add item to db collection</button>
-						</form>
-				</section>
-		</section>
-    <script src="/main.js">
-    </script>
+    <section class="search-entry-all-ordered">
+  			<h2>Search all entries by exact phrase</h2>
+  			<section class="form-container">
+  					<form action="/search/entry/allOrdered" method="POST" class="search-forms all-ordered">
+              <label for="all-ordered-search"></label>
+  						<input id="all-ordered-search" type="text" name="entry" value="">
+  						<button type="submit">Search</button>
+  						</form>
+  				</section>
+  		</section>
+      <section class="search-entry-all-unordered">
+    			<h2>Search all entries for any combination of words</h2>
+    			<section class="form-container">
+    					<form action="/search/entry/allUnordered" method="POST" class="search-forms all-unordered">
+                <label for="all-unordered-search"></label>
+    						<input id="all-unordered-search" type="text" name="string" value="">
+    						<button type="submit">Search</button>
+    						</form>
+    				</section>
+    		</section>
+        <section class="search-timestamp-by-course-number">
+      			<h2>Browse Transcripts by Course Number</h2>
+      			<section class="form-container">
+      					<form action="/search/timestamp/byCourseNumber" method="POST" class="search-forms by-course-number">
+                  <label for="selected-course">Select a Course Number to see all transcripts</label>
+      						<div class="browse-course-radio-container">
+                    <% for(let course = 1; course <= 41; course++ ){ %>
+                      <div class="">
+                        <input type="radio" name="courseNum" value="<%= course %>">
+                        <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
+                      </div>
+                    <% } %>
+                  </div>
+      						<button type="submit">submit</button>
+      						</form>
+      				</section>
+      		</section>
+    <section id="results">
+      <h2>Your results:</h2>
+      <section id="pagination-container">
+        <div id="results-list-component">
+          <ul class="transcriptsList">
+            <% transcripts.forEach(transcript => { %>
+              <% let split = transcript.timestamp.split("-") %>
+              <% let courseNumber = split[0] %>
+              <% let courseTimeStamp = split[1] %>
+              <li class="itemsListItem">
+                <% let courseInfo = courseNumber === "0"? "": `Course ${courseNumber}, at ${courseTimeStamp}`; %>
+                <div class="itemTitle"><%= courseInfo %></div>
+                <div class="itemContent"><%= `entry: ${transcript.entry}` %></div>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
+        <div id=results-pages-component>
+          <% if (pages > 0) { %>
+            <ul class="pagination text-center">
+            <% if (current == 1) { %>
+              <li class="disabled"><a>First</a></li>
+            <% } else { %>
+              <li ><a href="#" id="First" onclick="First(1)">First</a></li>
+            <% } %>
+            <% if (Number(current) - 1 > 0) { %>
+              <li><a href="#" onclick="First(<%= Number(current) - 1 %>)">Prev</a></li>
+            <% } else { %>
+              <li class="disabled"><a>Prev</a></li>
+            <% } %>
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+              <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <% if (i == current) { %>
+                <li class="active"><a><%= i %></a></li>
+              <% } else { %>
+                <li id="pages"><a href="#" onclick="First(<%= i %>)" ><%= i %></a></li>
+              <% } %>
+              <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="disabled"><a>...</a></li>
+              <% } %>
+            <% } %>
+            <% if (Number(current) + 1 <= pages) { %>
+              <li><a href="#" onclick="First(<%= Number(current) + 1 %>)">Next</a></li>
+            <% } else { %>
+              <li class="disabled"><a>Next</a></li>
+            <% } %>
+            <% if (current == pages) { %>
+              <li class="disabled"><a>Last</a></li>
+            <% } else { %>
+              <li><a href="#" onclick="First(<%=pages%>)">Last</a></li>
+              <% } %>
+            </ul>
+          <% } %>
+        </div>
+      </section>
+    </section>
   </body>
 </html>
