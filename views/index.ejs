@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>App Name</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
 	<section class="search-entry-all-ordered">
@@ -35,10 +35,12 @@
                 <label for="selected-course">Select a Course Number to see all transcripts</label>
     						<div class="browse-course-radio-container">
                   <% for(let course = 1; course <= 41; course++ ){ %>
+                    <% if(course !== 17 && course !== 18) { %>
                     <div class="">
                       <input type="radio" name="entry" value="<%= course %>">
                       <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
                     </div>
+                    <% } %>
                   <% } %>
                 </div>
                 <input class="hidden" name="page" value="1">

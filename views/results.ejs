@@ -35,10 +35,12 @@
                   <label for="selected-course">Select a Course Number to see all transcripts</label>
       						<div class="browse-course-radio-container">
                     <% for(let course = 1; course <= 41; course++ ){ %>
+                      <% if(course !== 17 && course !== 18) { %>
                       <div class="">
-                        <input type="radio" name="courseNum" value="<%= course %>">
+                        <input type="radio" name="entry" value="<%= course %>">
                         <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
                       </div>
+                      <% } %>
                     <% } %>
                   </div>
                   <input class="hidden" name="page" value="1">
@@ -47,6 +49,9 @@
       				</section>
       		</section>
     <section id="results">
+      <section>
+        <iframe id="course-player" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </section>
       <h2>Your results:</h2>
       <section id="pagination-container">
         <div id="results-list-component">
@@ -66,6 +71,9 @@
                 <div class="itemTitle"><%= courseInfo %></div>
                 <!-- pushing the transcript text into the inner text -->
                 <div class="itemContent"><%= `entry: ${transcript.entry}` %></div>
+                <div>
+                  <a class="playVideo" href="" data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>">Go to this part in the course</a>
+                </div>
               </li>
               <% }) %>
           </ul>
@@ -137,5 +145,6 @@
         </div>
       </section>
     </section>
+    <script src="/main.js" /></script>
   </body>
 </html>

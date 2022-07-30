@@ -5,14 +5,17 @@ const app = express()
 const PORT = process.env.PORT || 8000
 const mongoose = require('mongoose')
 const Transcript = require('./models/transcriptModel.js')
+const path = require('path')
 require('dotenv').config()
 
 // set up middleware
 
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
+// app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+
 
 // connect to db
 
@@ -27,8 +30,18 @@ mongoose.connect(process.env.DB_CONNECTION,
 
 // ROUTES
 
+// Main page
+
+app.get('/', async (request, response) => {
+    try {
+      response.render('index.ejs')
+    } catch (err) {
+        if (err) return response.status(500).send(err)
+    }
+})
+
+// This setup is for regex search of any ENTRY field containing all words, in that order
 app.get("/search/entry/allOrdered", async (request, response) => {
-  // This setup is for regex search of any ENTRY field containing all words, in that order
 
   // Pagination setup
   let perPage = 10
@@ -68,9 +81,9 @@ app.get("/search/entry/allOrdered", async (request, response) => {
   })
 })
 
+// This setup is for regex search of any ENTRY field containing all of the
+// words (except allows any order)
 app.get("/search/entry/allUnordered", async (request, response) => {
-  // This setup is for regex search of any ENTRY field containing all of the
-  // words (except allows any order)
 
   // Pagination setup
   let perPage = 10
@@ -116,8 +129,8 @@ app.get("/search/entry/allUnordered", async (request, response) => {
   })
 })
 
+// This setup is for regex search of any TIMESTAMP related to a course number (1-41 currently)
 app.get("/search/timestamp/byCourseNumber", async (request, response) => {
-  // This setup is for regex search of any TIMESTAMP related to a course number (1-41 currently)
 
   // Pagination setup
   let perPage = 10
@@ -158,16 +171,6 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
   })
 })
 
-// Main page
-
-app.get('/', async (request, response) => {
-    try {
-      response.render('index.ejs')
-    } catch (err) {
-        if (err) return response.status(500).send(err)
-    }
-})
-
 // Browse by course, browse by topic?
 
 app.get('/browse', async (request, response) => {
@@ -177,6 +180,7 @@ app.get('/browse', async (request, response) => {
         if (err) return response.status(500).send(err)
     }
 })
+
 
 // listen to routes
 
