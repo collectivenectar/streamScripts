@@ -10,3 +10,6 @@
   overflow: scroll;
   height: 80px;
 }
+.hidden{
+  display: none;
+}

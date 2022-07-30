@@ -9,19 +9,21 @@
     <section class="search-entry-all-ordered">
   			<h2>Search all entries by exact phrase</h2>
   			<section class="form-container">
-  					<form action="/search/entry/allOrdered" method="POST" class="search-forms all-ordered">
+  					<form action="/search/entry/allOrdered" method="GET" class="search-forms all-ordered">
               <label for="all-ordered-search"></label>
   						<input id="all-ordered-search" type="text" name="entry" value="">
+              <input class="hidden" name="page" value="1">
   						<button type="submit">Search</button>
   						</form>
   				</section>
   		</section>
       <section class="search-entry-all-unordered">
-    			<h2>Search all entries for any combination of words</h2>
+    			<h2>Search all entries for when these words are said together</h2>
     			<section class="form-container">
-    					<form action="/search/entry/allUnordered" method="POST" class="search-forms all-unordered">
+    					<form action="/search/entry/allUnordered" method="GET" class="search-forms all-unordered">
                 <label for="all-unordered-search"></label>
-    						<input id="all-unordered-search" type="text" name="string" value="">
+    						<input id="all-unordered-search" type="text" name="entry" value="">
+                <input class="hidden" name="page" value="1">
     						<button type="submit">Search</button>
     						</form>
     				</section>
@@ -29,7 +31,7 @@
         <section class="search-timestamp-by-course-number">
       			<h2>Browse Transcripts by Course Number</h2>
       			<section class="form-container">
-      					<form action="/search/timestamp/byCourseNumber" method="POST" class="search-forms by-course-number">
+      					<form action="/search/timestamp/byCourseNumber" method="GET" class="search-forms by-course-number">
                   <label for="selected-course">Select a Course Number to see all transcripts</label>
       						<div class="browse-course-radio-container">
                     <% for(let course = 1; course <= 41; course++ ){ %>
@@ -39,6 +41,7 @@
                       </div>
                     <% } %>
                   </div>
+                  <input class="hidden" name="page" value="1">
       						<button type="submit">submit</button>
       						</form>
       				</section>
@@ -48,54 +51,86 @@
       <section id="pagination-container">
         <div id="results-list-component">
           <ul class="transcriptsList">
+            <!-- loop to populate the results -->
             <% transcripts.forEach(transcript => { %>
+              <!-- parsing the course info from the timestamp by splitting, -->
               <% let split = transcript.timestamp.split("-") %>
+              <!-- then pulling the first element to get course number from the split -->
               <% let courseNumber = split[0] %>
+              <!-- then pulling the second element to get timestamp from the split -->
               <% let courseTimeStamp = split[1] %>
               <li class="itemsListItem">
+                <!-- putting course info as a formatted string literal into variable -->
                 <% let courseInfo = courseNumber === "0"? "": `Course ${courseNumber}, at ${courseTimeStamp}`; %>
+                <!-- pushing course info into the inner text -->
                 <div class="itemTitle"><%= courseInfo %></div>
+                <!-- pushing the transcript text into the inner text -->
                 <div class="itemContent"><%= `entry: ${transcript.entry}` %></div>
               </li>
               <% }) %>
           </ul>
         </div>
         <div id=results-pages-component>
+          <!-- if the response has results in it: -->
           <% if (pages > 0) { %>
             <ul class="pagination text-center">
+            <!-- if this page is the first page of results, disable nav to first -->
             <% if (current == 1) { %>
+              <!-- nested directory link needs route + entry + page -->
+              <!--  -->
               <li class="disabled"><a>First</a></li>
+              <!-- If this page is not the first page, provide a link to first -->
             <% } else { %>
-              <li ><a href="#" id="First" onclick="First(1)">First</a></li>
+              <li ><a href="<%= `${urlBase}?entry=${entry}&page=${1}` %>" id="First">First</a></li>
             <% } %>
+            <!-- if this page is not the first page, provide a link to previous -->
             <% if (Number(current) - 1 > 0) { %>
-              <li><a href="#" onclick="First(<%= Number(current) - 1 %>)">Prev</a></li>
+              <li><a href="<%= `${urlBase}?entry=${entry}&page=${current - 1}` %>">Prev</a></li>
             <% } else { %>
+              <!-- if this page is the first page, disable the nav to previous -->
               <li class="disabled"><a>Prev</a></li>
             <% } %>
+            <!-- this paginates 5 nav options in the center, and puts current page -->
+            <!-- at the end of the options. -->
+            <!-- set the var i for the loop - if current page is greater than 5, -->
+            <!-- make the loop start from current page minus 4 -->
+            <!-- for example, current = 7, i => 3, loops to 7 -->
             <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <!-- if the current page is greater than 5, don't show '...' -->
             <% if (i !== 1) { %>
               <li class="disabled"><a>...</a></li>
             <% } %>
+            <!-- begin looping through to create page numbers for the middle -->
+            <!-- starting from i, and going to the current page + 4, provided-->
+            <!-- we aren't already at the end of the results -->
             <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+              <!-- if the loop is at the current page value, disable the link -->
               <% if (i == current) { %>
                 <li class="active"><a><%= i %></a></li>
+                <!-- otherwise provide a link for that page number -->
               <% } else { %>
-                <li id="pages"><a href="#" onclick="First(<%= i %>)" ><%= i %></a></li>
+                <li id="pages"><a href="<%= `${urlBase}?entry=${entry}&page=${i}` %>"><%= i %></a></li>
               <% } %>
+              <!-- if the loop is at the end and there are still more pages, -->
+              <!-- show the '...' at the end -->
               <% if (i == Number(current) + 4 && i < pages) { %>
                 <li class="disabled"><a>...</a></li>
               <% } %>
             <% } %>
+            <!-- end of the numbers loop, now adding next and last logic -->
+            <!-- if not at the end of results, provide a next link -->
             <% if (Number(current) + 1 <= pages) { %>
-              <li><a href="#" onclick="First(<%= Number(current) + 1 %>)">Next</a></li>
+              <li><a href="<%= `${urlBase}?entry=${entry}&page=${current + 1}` %>">Next</a></li>
+              <!-- otherwise disable the next link -->
             <% } else { %>
               <li class="disabled"><a>Next</a></li>
             <% } %>
+            <!-- if at the end of results, disable the last link -->
             <% if (current == pages) { %>
               <li class="disabled"><a>Last</a></li>
+              <!-- otherwise provide a last link -->
             <% } else { %>
-              <li><a href="#" onclick="First(<%=pages%>)">Last</a></li>
+              <li><a href="<%= `${urlBase}?entry=${entry}&page=${pages}` %>">Last</a></li>
               <% } %>
             </ul>
           <% } %>

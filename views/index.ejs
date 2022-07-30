@@ -12,6 +12,7 @@
 					<form action="/search/entry/allOrdered" method="GET" class="search-forms all-ordered">
             <label for="all-ordered-search"></label>
 						<input id="all-ordered-search" type="text" name="entry" value="">
+            <input class="hidden" name="page" value="1">
 						<button type="submit">Search</button>
 						</form>
 				</section>
@@ -22,6 +23,7 @@
   					<form action="/search/entry/allUnordered" method="GET" class="search-forms all-unordered">
               <label for="all-unordered-search"></label>
   						<input id="all-unordered-search" type="text" name="entry" value="">
+              <input class="hidden" name="page" value="1">
   						<button type="submit">Search</button>
   						</form>
   				</section>
@@ -34,11 +36,12 @@
     						<div class="browse-course-radio-container">
                   <% for(let course = 1; course <= 41; course++ ){ %>
                     <div class="">
-                      <input type="radio" name="courseNum" value="<%= course %>">
+                      <input type="radio" name="entry" value="<%= course %>">
                       <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
                     </div>
                   <% } %>
                 </div>
+                <input class="hidden" name="page" value="1">
     						<button type="submit">submit</button>
     						</form>
     				</section>

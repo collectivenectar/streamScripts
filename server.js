@@ -32,11 +32,14 @@ app.get("/search/entry/allOrdered", async (request, response) => {
 
   // Pagination setup
   let perPage = 10
-  let page = 1
+  let page = request.query.page || 1
 
-  let lowerCasedEntry = String(request.body.entry).toLowerCase()
+  // query setup
+  let lowerCasedEntry = String(request.query.entry).toLowerCase()
   let query = {"entry": {$regex: String(lowerCasedEntry)}}
-  return Transcript.find(query).skip((perPage * page) - perPage).limit(perPage)
+  let sort = {_id: 1}
+  // query to mongodb
+  Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
   .exec((error, transcriptsList) => {
     Transcript.count(query).exec((error, count) => {
       if(error) return next(error)
@@ -44,10 +47,11 @@ app.get("/search/entry/allOrdered", async (request, response) => {
         response.render('results.ejs', {
           transcripts: [{
             timestamp: "0-0",
-            entry: `No results found for '${request.body.entry}'`,
+            entry: `No results found for '${request.query.entry}'`,
             current: 1,
             pages: 1,
-            perPage: 1
+            perPage: 1,
+            urlBase: "/search/entry/allOrdered"
           }]
         })
       } else{
@@ -55,68 +59,102 @@ app.get("/search/entry/allOrdered", async (request, response) => {
           transcripts: transcriptsList,
           current: page,
           pages: Math.ceil(count / perPage),
-          perPage: perPage
+          perPage: perPage,
+          entry: request.query.entry,
+          urlBase: "/search/entry/allOrdered"
         })
       }
     })
   })
-
-
-
-  // .then((transcriptsList) => {
-  //   if(transcriptsList.length === 0){
-  //     response.render('results.ejs', {transcripts: [{
-  //       timestamp: "0-0",
-  //       entry: `No results found for '${request.body.entry}'`
-  //     }]})
-  //   } else{
-  //     response.render('results.ejs', {transcripts: transcriptsList})
-  //   }
-  // })
-  // .catch((err) => {
-  //   console.log(err)
-  //   return 'error occurred'
-  // })
 })
 
 app.get("/search/entry/allUnordered", async (request, response) => {
   // This setup is for regex search of any ENTRY field containing all of the
   // words (except allows any order)
-  const queryString = String(request.body.entry).toLowerCase()
+
+  // Pagination setup
+  let perPage = 10
+  let page = request.query.page || 1
+
+  // query setup
+  const queryString = String(request.query.entry).toLowerCase()
   let splitQuery = queryString.split(" ")
   let allQueries = []
   splitQuery.forEach(element => {
     allQueries.push({"entry": {$regex: String(element)}})
   })
-  return Transcript.find({$and: allQueries})
-  .exec()
-  .then((transcriptsList) => {
-    if(transcriptsList.length === 0){
-      response.render('results.ejs', {transcripts: [{
-        timestamp: "0-0",
-        entry: `No results found for '${request.body.entry}'`
-      }]})
-    } else{
-      response.render('results.ejs', {transcripts: transcriptsList})
-    }
-  })
-  .catch((err) => {
-    console.log(err)
-    response.status(500).send(err)
+  const query = {$and: allQueries}
+  let sort = {_id: 1}
+
+  // query to mongodb
+  Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
+  .exec((error, transcriptsList) => {
+    Transcript.count(query).exec((error, count) => {
+      if(error) return next(error)
+      if(count === 0){
+        response.render('results.ejs', {
+          transcripts: [{
+            timestamp: "0-0",
+            entry: `No results found for '${request.query.entry}'`,
+            current: 1,
+            pages: 1,
+            perPage: 1,
+            urlBase: "/search/entry/allUnordered"
+          }]
+        })
+      } else{
+        response.render('results.ejs', {
+          transcripts: transcriptsList,
+          current: page,
+          pages: Math.ceil(count / perPage),
+          perPage: perPage,
+          entry: request.query.entry,
+          urlBase: "/search/entry/allUnordered"
+        })
+      }
+    })
   })
 })
 
 app.get("/search/timestamp/byCourseNumber", async (request, response) => {
   // This setup is for regex search of any TIMESTAMP related to a course number (1-41 currently)
-  const courseNumber = request.body.courseNum
-  return Transcript.find({timestamp: new RegExp("^" + courseNumber + "-")})
-  .exec()
-  .then((transcript) => {
-    response.render('results.ejs', {transcripts: transcript})
-  })
-  .catch((err) => {
-    console.log(err)
-    response.status(500).send(err)
+
+  // Pagination setup
+  let perPage = 10
+  let page = request.query.page || 1
+
+  // query setup
+  const courseNumber = request.query.entry
+  const query = {timestamp: new RegExp("^" + courseNumber + "-")}
+  let sort = {_id: 1}
+
+  Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
+  .exec((error, transcriptsList) => {
+    Transcript.count(query).exec((error, count) => {
+      console.log(count)
+      if(error) return next(error)
+      if(count === 0){
+        response.render('results.ejs', {
+          transcripts: [{
+            timestamp: "0-0",
+            entry: `No results found for '${request.query.entry}'`,
+            current: 1,
+            pages: 1,
+            perPage: 1,
+            urlBase: "/search/timestamp/byCourseNumber"
+          }]
+        })
+      } else{
+        response.render('results.ejs', {
+          transcripts: transcriptsList,
+          current: page,
+          pages: Math.ceil(count / perPage),
+          perPage: perPage,
+          entry: request.query.entry,
+          urlBase: "/search/timestamp/byCourseNumber"
+        })
+      }
+    })
   })
 })
 
@@ -125,16 +163,6 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
 app.get('/', async (request, response) => {
     try {
       response.render('index.ejs')
-    } catch (err) {
-        if (err) return response.status(500).send(err)
-    }
-})
-
-// Load search results
-
-app.get('/results', async (request, response) => {
-    try {
-        response.render('results.ejs')
     } catch (err) {
         if (err) return response.status(500).send(err)
     }
