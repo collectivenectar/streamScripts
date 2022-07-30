@@ -55,10 +55,8 @@ function changePlayerUrl(eventT){
   let courseNum = courseInfo[0]
   let courseTimeStamp = timeStampToMinutes(courseInfo[1])
   iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://localhost:8000`
-  console.log(courseInfo, courseNum, courseTimeStamp, iframeElement.src)
   return false
 }
-console.log(playerButtons)
 
 function timeStampToMinutes(timeStamp){
   if(timeStamp.includes(":")){
@@ -70,9 +68,9 @@ function timeStampToMinutes(timeStamp){
       let total = seconds + (minutes * 60) + (hours * 60 * 60)
       return String(total)
     }else{
-      let minutes = Number(separate[1])
-      let seconds = Number(separate[0])
-      return String(minutes + seconds)
+      let minutes = Number(separate[0])
+      let seconds = Number(separate[1])
+      return String((minutes * 60) + seconds)
     }
   }
   else{
