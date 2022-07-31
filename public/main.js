@@ -1,5 +1,5 @@
-let playerButtons = document.getElementsByClassName('playVideo')
-let iframeElement = document.getElementById('player')
+let playerButtons = document.getElementsByClassName('play-video')
+let iframeElement = document.getElementById('player-container').children[0]
 
 const courseURLPrefix = "https://www.youtube-nocookie.com/embed/"
 // yt urls
@@ -54,7 +54,8 @@ function changePlayerUrl(eventT){
   let courseInfo = eventT.target.getAttribute('data-urlString').split("-")
   let courseNum = courseInfo[0]
   let courseTimeStamp = timeStampToMinutes(courseInfo[1])
-  iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://leonstreamscripts.herokuapp.com`
+  console.log("test")
+  iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://leonstreamscrips.herokuapp.com`
   return false
 }
 

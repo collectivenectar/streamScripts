@@ -59,8 +59,8 @@
         <h2 class="title-font">LeonStreamScripts</h2>
       </nav>
       <section id="results">
-        <section class="player-container">
-          <iframe id="player" width="560" height="315" src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0&origin=https://leonstreamscripts.herokuapp.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <section id="player-container">
+          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0?origin=https://leonstreamscrips.herokuapp.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
         <h2 class="title-font"><%= `${count}` %> results for <%= `'${entry}'` %>:</h2>
         <div id=results-navigation>
@@ -151,7 +151,7 @@
                   <!-- pushing the transcript text into the inner text -->
                   <div class="caption"><%= `${transcript.entry}` %></div>
                   <div class="play-container">
-                    <a class="play-video" href="" data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>">Go to this section</a>
+                    <a class="play-video" onClick="console.log()" href="" data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>">Go to this section</a>
                   </div>
                 </li>
                 <% }) %>
