@@ -64,7 +64,8 @@ app.get("/search/entry/allOrdered", async (request, response) => {
             current: 1,
             pages: 1,
             perPage: 1,
-            urlBase: "/search/entry/allOrdered"
+            urlBase: "/search/entry/allOrdered",
+            count: 0
           }]
         })
       } else{
@@ -74,7 +75,8 @@ app.get("/search/entry/allOrdered", async (request, response) => {
           pages: Math.ceil(count / perPage),
           perPage: perPage,
           entry: request.query.entry,
-          urlBase: "/search/entry/allOrdered"
+          urlBase: "/search/entry/allOrdered",
+          count: count
         })
       }
     })
@@ -112,7 +114,8 @@ app.get("/search/entry/allUnordered", async (request, response) => {
             current: 1,
             pages: 1,
             perPage: 1,
-            urlBase: "/search/entry/allUnordered"
+            urlBase: "/search/entry/allUnordered",
+            count: 0
           }]
         })
       } else{
@@ -122,7 +125,8 @@ app.get("/search/entry/allUnordered", async (request, response) => {
           pages: Math.ceil(count / perPage),
           perPage: perPage,
           entry: request.query.entry,
-          urlBase: "/search/entry/allUnordered"
+          urlBase: "/search/entry/allUnordered",
+          count: count
         })
       }
     })
@@ -154,7 +158,8 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
             current: 1,
             pages: 1,
             perPage: 1,
-            urlBase: "/search/timestamp/byCourseNumber"
+            urlBase: "/search/timestamp/byCourseNumber",
+            count: 0
           }]
         })
       } else{
@@ -164,7 +169,8 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
           pages: Math.ceil(count / perPage),
           perPage: perPage,
           entry: request.query.entry,
-          urlBase: "/search/timestamp/byCourseNumber"
+          urlBase: "/search/timestamp/byCourseNumber",
+          count: count
         })
       }
     })
