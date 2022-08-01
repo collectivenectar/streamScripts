@@ -59,12 +59,12 @@ app.get("/search/entry/allOrdered", async (request, response) => {
         response.render('results.ejs', {
             transcripts: {
               timestamp: "0-0",
-              entry: `No results found for '${request.query.entry}'`
+              entry: `${request.query.entry}`
             },
             current: 1,
             pages: 1,
             perPage: 1,
-            entry: `No results found for '${request.query.entry}'`,
+            entry: `${request.query.entry}`,
             urlBase: "/search/entry/allOrdered",
             count: 0
         })
@@ -110,12 +110,12 @@ app.get("/search/entry/allUnordered", async (request, response) => {
         response.render('results.ejs', {
           transcripts: {
               timestamp: "0-0",
-              entry: `No results found for '${request.query.entry}'`
+              entry: `${request.query.entry}`
             },
             current: 1,
             pages: 1,
             perPage: 1,
-            entry: `No results found for '${request.query.entry}'`,
+            entry: `${request.query.entry}`,
             urlBase: "/search/entry/allUnordered",
             count: 0
         })
@@ -155,12 +155,12 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
         response.render('results.ejs', {
             transcripts: {
               timestamp: "0-0",
-              entry: `No results found for '${request.query.entry}'`
+              entry: `${request.query.entry}`
             },
             current: 1,
             pages: 1,
             perPage: 1,
-            entry: `No results found for '${request.query.entry}'`,
+            entry: `${request.query.entry}`,
             urlBase: "/search/timestamp/byCourseNumber",
             count: "0"
         })

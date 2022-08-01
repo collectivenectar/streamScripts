@@ -62,8 +62,7 @@
         <section id="player-container">
           <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0?origin=https://leonstreamscrips.herokuapp.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
-        <% const parseCount = pages %>
-        <h2 class="title-font"><%= `${parseCount}` %> results for <%= `'${entry}'` %>:</h2>
+        <h2 class="title-font"><%= `${count}` %> results for <%= `'${entry}'` %>:</h2>
         <div id=results-navigation>
           <!-- if the response has results in it: -->
           <% if (pages > 0) { %>
@@ -133,7 +132,7 @@
             <ul class="transcriptsList">
               <!-- loop to populate the results -->
               <% if (count == 0) {%>
-                
+
               <% } else { %>
 
               <% transcripts.forEach(transcript => { %>
