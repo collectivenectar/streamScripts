@@ -46,7 +46,6 @@ app.get("/search/entry/allOrdered", async (request, response) => {
   // Pagination setup
   let perPage = 10
   let page = request.query.page || 1
-
   // query setup
   let lowerCasedEntry = String(request.query.entry).toLowerCase()
   let query = {"entry": {$regex: String(lowerCasedEntry)}}
@@ -54,19 +53,20 @@ app.get("/search/entry/allOrdered", async (request, response) => {
   // query to mongodb
   Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
   .exec((error, transcriptsList) => {
-    Transcript.count(query).exec((error, count) => {
+    Transcript.countDocuments(query).exec((error, count) => {
       if(error) return next(error)
       if(count === 0){
         response.render('results.ejs', {
-          transcripts: [{
-            timestamp: "0-0",
-            entry: `No results found for '${request.query.entry}'`,
+            transcripts: {
+              timestamp: "0-0",
+              entry: `No results found for '${request.query.entry}'`
+            },
             current: 1,
             pages: 1,
             perPage: 1,
+            entry: `No results found for '${request.query.entry}'`,
             urlBase: "/search/entry/allOrdered",
             count: 0
-          }]
         })
       } else{
         response.render('results.ejs', {
@@ -104,19 +104,20 @@ app.get("/search/entry/allUnordered", async (request, response) => {
   // query to mongodb
   Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
   .exec((error, transcriptsList) => {
-    Transcript.count(query).exec((error, count) => {
+    Transcript.countDocuments(query).exec((error, count) => {
       if(error) return next(error)
-      if(count === 0){
+      if(count == 0){
         response.render('results.ejs', {
-          transcripts: [{
-            timestamp: "0-0",
-            entry: `No results found for '${request.query.entry}'`,
+          transcripts: {
+              timestamp: "0-0",
+              entry: `No results found for '${request.query.entry}'`
+            },
             current: 1,
             pages: 1,
             perPage: 1,
+            entry: `No results found for '${request.query.entry}'`,
             urlBase: "/search/entry/allUnordered",
             count: 0
-          }]
         })
       } else{
         response.render('results.ejs', {
@@ -147,20 +148,21 @@ app.get("/search/timestamp/byCourseNumber", async (request, response) => {
 
   Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
   .exec((error, transcriptsList) => {
-    Transcript.count(query).exec((error, count) => {
-      console.log(count)
+    Transcript.countDocuments(query).exec((error, count) => {
+      console.log(error)
       if(error) return next(error)
       if(count === 0){
         response.render('results.ejs', {
-          transcripts: [{
-            timestamp: "0-0",
-            entry: `No results found for '${request.query.entry}'`,
+            transcripts: {
+              timestamp: "0-0",
+              entry: `No results found for '${request.query.entry}'`
+            },
             current: 1,
             pages: 1,
             perPage: 1,
+            entry: `No results found for '${request.query.entry}'`,
             urlBase: "/search/timestamp/byCourseNumber",
-            count: 0
-          }]
+            count: "0"
         })
       } else{
         response.render('results.ejs', {

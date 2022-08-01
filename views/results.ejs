@@ -62,7 +62,8 @@
         <section id="player-container">
           <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0?origin=https://leonstreamscrips.herokuapp.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </section>
-        <h2 class="title-font"><%= `${count}` %> results for <%= `'${entry}'` %>:</h2>
+        <% const parseCount = pages %>
+        <h2 class="title-font"><%= `${parseCount}` %> results for <%= `'${entry}'` %>:</h2>
         <div id=results-navigation>
           <!-- if the response has results in it: -->
           <% if (pages > 0) { %>
@@ -74,11 +75,11 @@
               <li class="disabled page-nav"><a>First</a></li>
               <!-- If this page is not the first page, provide a link to first -->
             <% } else { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${1}` %>" id="First">First</a></li>
+              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${1}` %>">First</a></li>
             <% } %>
             <!-- if this page is not the first page, provide a link to previous -->
             <% if (Number(current) - 1 > 0) { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${current - 1}` %>">Prev</a></li>
+              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${Number(current) - 1}` %>">Prev</a></li>
             <% } else { %>
               <!-- if this page is the first page, disable the nav to previous -->
               <li class="disabled page-nav"><a>Prev</a></li>
@@ -99,10 +100,10 @@
             <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
               <!-- if the loop is at the current page value, disable the link -->
               <% if (i == current) { %>
-                <li class="active page-nav"><a><%= i %></a></li>
+                <li class="disabled page-nav"><a><%= i %></a></li>
                 <!-- otherwise provide a link for that page number -->
               <% } else { %>
-                <li id="pages" class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${i}` %>"><%= i %></a></li>
+                <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${i}` %>"><%= i %></a></li>
               <% } %>
               <!-- if the loop is at the end and there are still more pages, -->
               <!-- show the '...' at the end -->
@@ -113,13 +114,13 @@
             <!-- end of the numbers loop, now adding next and last logic -->
             <!-- if not at the end of results, provide a next link -->
             <% if (Number(current) + 1 <= pages) { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${current + 1}` %>">Next</a></li>
+              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${Number(current) + 1}` %>">Next</a></li>
               <!-- otherwise disable the next link -->
             <% } else { %>
               <li class="disabled page-nav"><a>Next</a></li>
             <% } %>
             <!-- if at the end of results, disable the last link -->
-            <% if (current == pages) { %>
+            <% if (Number(current) == pages) { %>
               <li class="disabled page-nav"><a>Last</a></li>
               <!-- otherwise provide a last link -->
             <% } else { %>
@@ -131,6 +132,10 @@
         <section id="results-container">
             <ul class="transcriptsList">
               <!-- loop to populate the results -->
+              <% if (count == 0) {%>
+                
+              <% } else { %>
+
               <% transcripts.forEach(transcript => { %>
                 <!-- parsing the course info from the timestamp by splitting, -->
                 <% let split = transcript.timestamp.split("-") %>
@@ -154,7 +159,7 @@
                     <a class="play-video" onClick="console.log()" href="" data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>">Go to this section</a>
                   </div>
                 </li>
-                <% }) %>
+                <% })} %>
             </ul>
         </section>
       </section>
