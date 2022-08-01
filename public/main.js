@@ -55,7 +55,7 @@ function changePlayerUrl(eventT){
   let courseNum = courseInfo[0]
   let courseTimeStamp = timeStampToMinutes(courseInfo[1])
   console.log("test")
-  iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://localhost:8000`
+  iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://leonstreamscripts.herokuapp.com`
   return false
 }
 
