@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 8000
 const mongoose = require('mongoose')
 const Transcript = require('./models/transcriptModel.js')
 const path = require('path')
+const mongodb = require('mongodb');
 require('dotenv').config()
+const fixieData = process.env.FIXIE_SOCKS_HOST.split(new RegExp('[/(:\\/@/]+'));
 
 // set up middleware
 
@@ -20,7 +22,13 @@ app.use(express.urlencoded({extended:true}))
 // connect to db
 
 mongoose.connect(process.env.DB_CONNECTION,
-    {useNewUrlParser: true},
+    {useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverApi: mongodb.ServerApiVersion.v1,
+      proxyUsername: fixieData[0],
+      proxyPassword: fixieData[1],
+      proxyHost: fixieData[2],
+      proxyPort: fixieData[3]},
     (error) => {
       if(error){
         console.log(error)
