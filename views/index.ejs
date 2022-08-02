@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <title>App Name</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Source+Serif+Pro:wght@300;400&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body id="main">
     <section id="search-panel">
       <h2 class="title-font">Search</h2>
       <section class="search all-ordered">
@@ -18,7 +19,7 @@
                     <label for="all-ordered-search"></label>
  						       <input class="search-input" type="text" name="entry" value="" placeholder="enter text here">
                     <input class="hidden" name="page" value="1">
- 						       <button class="button-search" type="submit">Search</button>
+ 						       <button type="submit">Search</button>
  						     </form>
  				     </section>
  		 </section>
@@ -29,7 +30,7 @@
                <label for="all-unordered-search"></label>
    						<input class="search-input" type="text" name="entry" value="" placeholder="enter text here">
                <input class="hidden" name="page" value="1">
-   						<button class="button-search" type="submit">Search</button>
+   						<button type="submit">Search</button>
    						</form>
    				</section>
    		</section>
@@ -39,14 +40,45 @@
      					<form action="/search/timestamp/byCourseNumber" method="GET" class="search-form course-number">
                  <label for="selected-course">Select a Course Number to see all captions</label>
      						<div class="course-radio-container">
-                   <% for(let course = 1; course <= 41; course++ ){ %>
-                     <% if(course !== 17 && course !== 18) { %>
-                     <div class="course-radio">
-                       <input class="radio" type="radio" name="entry" value="<%= course %>">
-                       <label for="<%= `Course ${course}` %>"><%= `Course ${course}` %></label>
-                     </div>
-                     <% } %>
-                   <% } %>
+                       <label><input class="radio" type="radio" name="entry" value="1">1 - Become A Software Engineer</label>
+                       <label><input class="radio" type="radio" name="entry" value="2">2 - Learn HTML</label>
+                       <label><input class="radio" type="radio" name="entry" value="3">3 - Learn More HTML</label>
+                       <label><input class="radio" type="radio" name="entry" value="4">4 - Learn CSS</label>
+                       <label><input class="radio" type="radio" name="entry" value="5">5 - Learn CSS Layout</label>
+                       <label><input class="radio" type="radio" name="entry" value="6">6 - Let's Review HTML & CSS</label>
+                       <label><input class="radio" type="radio" name="entry" value="7">7 - Learn Responsive CSS</label>
+                       <label><input class="radio" type="radio" name="entry" value="8">8 - Write Bad CSS</label>
+                       <label><input class="radio" type="radio" name="entry" value="9">9 - Networking Night</label>
+                       <label><input class="radio" type="radio" name="entry" value="10">10 - Rant & Review</label>
+                       <label><input class="radio" type="radio" name="entry" value="11">11 - Learn CSS Layout & Flexbox</label>
+                       <label><input class="radio" type="radio" name="entry" value="12">12 - Learn Javascript</label>
+                       <label><input class="radio" type="radio" name="entry" value="13">13 - Fun Javascript Examples</label>
+                       <label><input class="radio" type="radio" name="entry" value="14">14 - Javascript Functions For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="15">15 - How To Start Freelancing</label>
+                       <label><input class="radio" type="radio" name="entry" value="16">16 - Learn Javascript Loops</label>
+                       <label><input class="radio" type="radio" name="entry" value="19">19 - Learn Javascript Arrays</label>
+                       <label><input class="radio" type="radio" name="entry" value="20">20 - Practice Javascript Arrays</label>
+                       <label><input class="radio" type="radio" name="entry" value="21">21 - Learn Javascript Objects</label>
+                       <label><input class="radio" type="radio" name="entry" value="22">22 - Practice Javascript Objects</label>
+                       <label><input class="radio" type="radio" name="entry" value="23">23 - Javascript APIs For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="24">24 - Git And Github For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="25">25 - Fix Your Resume So You Get Tech Interviews</label>
+                       <label><input class="radio" type="radio" name="entry" value="26">26 - Build a Simple App Using APIs - Beginner Friendly</label>
+                       <label><input class="radio" type="radio" name="entry" value="27">27 - Get Data From NASA! Simple Javascript API</label>
+                       <label><input class="radio" type="radio" name="entry" value="28">28 - Javascript API Practice For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="29">29 - Review The Basics Of Javascript</label>
+                       <label><input class="radio" type="radio" name="entry" value="30">30 - OOP But It Actually Makes Sense</label>
+                       <label><input class="radio" type="radio" name="entry" value="31">31 - What Is Inheritance & Polymorphism</label>
+                       <label><input class="radio" type="radio" name="entry" value="32">32 - Object Oriented Programming w/ JS Review</label>
+                       <label><input class="radio" type="radio" name="entry" value="33">33 - Why You Are Not Getting Interviews! Secrets To Landing Your First Tech Job</label>
+                       <label><input class="radio" type="radio" name="entry" value="34">34 - Crush Your Technical Interviews! Secrets To Landing Your First Tech Job</label>
+                       <label><input class="radio" type="radio" name="entry" value="35">35 - Easy Intro To Node, Promises & Async / Await</label>
+                       <label><input class="radio" type="radio" name="entry" value="36">36 - Javascipt Event Loop For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="37">37 - No Express ! Fullstack App Just Node</label>
+                       <label><input class="radio" type="radio" name="entry" value="38">38 - Build Your Own API HOSTED On Heroku</label>
+                       <label><input class="radio" type="radio" name="entry" value="39">39 - CRUD APIs For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="40">40 - What Is MongoDB? CRUD Apps For Beginners</label>
+                       <label><input class="radio" type="radio" name="entry" value="41">41 - Build A Simple CRUD App With Express, MongoDB, & EJS</label>
                  </div>
                  <input class="hidden" name="page" value="1">
      						<button class="button-search" type="submit">browse</button>
@@ -54,7 +86,7 @@
      				</section>
      		</section>
     </section>
-    <section id="main">
+    <section id="main-right">
       <nav>
         <h2 class="title-font">LeonStreamScripts</h2>
       </nav>

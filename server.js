@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
-// connect to db
+// connect to db using fixie SOCKS proxy
 
 mongoose.connect(process.env.DB_CONNECTION,
     {useNewUrlParser: true,
@@ -35,6 +35,17 @@ mongoose.connect(process.env.DB_CONNECTION,
       }
       console.log('Connected to database')}
 )
+
+// no proxy setup
+// mongoose.connect(process.env.DB_CONNECTION, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }, (error) => {
+//   if(error){
+//     console.log(error)
+//   }
+//   console.log("Connected to database")
+// })
 
 // ROUTES
 
@@ -55,7 +66,10 @@ app.get("/search/entry/allOrdered", async (request, response) => {
   let perPage = 10
   let page = request.query.page || 1
   // query setup
-  let lowerCasedEntry = String(request.query.entry).toLowerCase()
+  let lowerCasedEntry = String(request.query.entry).toLowerCase().trim()
+  if(lowerCasedEntry === ""){
+    lowerCasedEntry = '___'
+  }
   let query = {"entry": {$regex: String(lowerCasedEntry)}}
   let sort = {_id: 1}
   // query to mongodb
@@ -100,12 +114,17 @@ app.get("/search/entry/allUnordered", async (request, response) => {
   let page = request.query.page || 1
 
   // query setup
-  const queryString = String(request.query.entry).toLowerCase()
-  let splitQuery = queryString.split(" ")
+  const queryString = String(request.query.entry).toLowerCase().trim()
   let allQueries = []
-  splitQuery.forEach(element => {
-    allQueries.push({"entry": {$regex: String(element)}})
-  })
+  if(queryString === ""){
+    allQueries = [{"entry": {$regex: String("___")}}]
+  } else{
+    let splitQuery = queryString.split(" ")
+    splitQuery.forEach(element => {
+      allQueries.push({"entry": {$regex: String(element)}})
+    })
+  }
+
   const query = {$and: allQueries}
   let sort = {_id: 1}
 
@@ -146,18 +165,22 @@ app.get("/search/entry/allUnordered", async (request, response) => {
 app.get("/search/timestamp/byCourseNumber", async (request, response) => {
 
   // Pagination setup
-  let perPage = 10
+  let perPage = 20
   let page = request.query.page || 1
 
   // query setup
   const courseNumber = request.query.entry
-  const query = {timestamp: new RegExp("^" + courseNumber + "-")}
+  let search
+  if(Number(courseNumber)){
+    search = "^" + courseNumber + "-"
+  } else{
+    search = "^" + 1 + "-"
+  }
+  const query = {timestamp: new RegExp(search)}
   let sort = {_id: 1}
-
   Transcript.find(query).sort(sort).skip((perPage * page) - perPage).limit(perPage)
   .exec((error, transcriptsList) => {
     Transcript.countDocuments(query).exec((error, count) => {
-      console.log(error)
       if(error) return next(error)
       if(count === 0){
         response.render('results.ejs', {
