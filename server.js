@@ -63,7 +63,7 @@ app.get('/', async (request, response) => {
 app.get("/search/entry/allOrdered", async (request, response) => {
 
   // Pagination setup
-  let perPage = 10
+  let perPage = 20
   let page = request.query.page || 1
   // query setup
   let lowerCasedEntry = String(request.query.entry).toLowerCase().trim()
@@ -110,7 +110,7 @@ app.get("/search/entry/allOrdered", async (request, response) => {
 app.get("/search/entry/allUnordered", async (request, response) => {
 
   // Pagination setup
-  let perPage = 10
+  let perPage = 20
   let page = request.query.page || 1
 
   // query setup
