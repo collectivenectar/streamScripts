@@ -66,7 +66,7 @@ app.get("/search/entry/allOrdered", async (request, response) => {
   let perPage = 20
   let page = request.query.page || 1
   // query setup
-  let lowerCasedEntry = String(request.query.entry).toLowerCase().trim().replace(/[^a-z0-9]/gi,'')
+  let lowerCasedEntry = String(request.query.entry).toLowerCase().trim().replace(/[^a-z0-9 ]/gi,'')
   if(lowerCasedEntry === ""){
     lowerCasedEntry = '___'
   }
@@ -114,7 +114,7 @@ app.get("/search/entry/allUnordered", async (request, response) => {
   let page = request.query.page || 1
 
   // query setup
-  const queryString = String(request.query.entry).toLowerCase().trim().replace(/[^a-z0-9]/gi,'')
+  const queryString = String(request.query.entry).toLowerCase().trim().replace(/[^a-z0-9 ]/gi,'')
   let allQueries = []
   if(queryString === ""){
     allQueries = [{"entry": {$regex: String("___")}}]
