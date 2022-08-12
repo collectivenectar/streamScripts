@@ -1,5 +1,5 @@
 # streamScripts
-A fullstack app for searching 100Devs Leon stream transcripts
+## A fullstack app for searching 100Devs Leon stream transcripts
 
 This app is designed to provide a faster way to search through course topics from
 Leons 100Devs 2022 livestreams.
@@ -12,39 +12,47 @@ database was then imported from the
 into a mongoDB collection.
 
 This app was built using mongoDB, node.js, express.js, and EJS.
-
-Here is a screenshot of what's at => leonstreamscripts.herokuapp.com
+<br>
+<br>
+# what's at => leonstreamscripts.herokuapp.com ?
 
 <img src="https://github.com/collectivenectar/streamScripts/blob/73c83ccfafc1692ec41723f264a1805ff9d5400c/leonstreamscripts.png" width="1000" height="560">
+<br>
+<br>
 
-How does it work?
+# How does it work?
 
 There are currently 3 different ways to request from the captions database:
+<br>
+## 2 options using Search:
 
-2 options using Search:
-
-by exact phrase - it searches for EXACTLY what you type, no exceptions, including
+### by exact phrase - it searches for EXACTLY what you type, no exceptions, including
 spaces between words
 
 EXAMPLE: "software developer" will search for both words, 'software' AND 'developer',
 in that order.
-
-appearing together in the same entry - It searches for captions that contain ALL
+<br>
+### appearing together in the same entry - It searches for captions that contain ALL
 of the words, but without caring about the order, or if they're spread out
 throughout the entry.
-
+<br>
+<br>
 EXAMPLE: "software developer" will search first for 'software', and then, IF the
 word 'developer' is ALSO in that entry, then it will return that entry. It doesn't
 matter if one word is at the beginning of a sentence, and the other is at the end.
-
-and 1 option to browse:
+<br>
+<br>
+## and 1 option to browse:
 
 by course number - Will return the entire course transcript, sorted, starting from
 0:00, and goes to the last minute.
 
 Just select the course, and hit 'browse' to look through.
+<br>
+<br>
+<br>
 
-Search tips:
+# Search tips:
 
 The only restrictions I've placed on what you type is that it is alphanumerical characters
 ONLY - Most of the captions don't have any punctuation anyways, except for the occasional
@@ -58,8 +66,10 @@ how it's phrased.
 If the results you get shows that you searched for '---' or all underscores, you've
 searched for either something that just doesn't exist, or you're using special
 characters.
+<br>
+<br>
 
-Stretch Goals:
+# Stretch Goals:
 
 Some things I'd like to add if I had the time:
 
@@ -81,8 +91,10 @@ User generated content - Allow users to add information to timestamps, like
 when the instructor begins a topic and ends a topic, to add a tag to indicate the
 topic itself as 'OOP' or 'closures' etc. Comments don't seem worthwhile as this is
 already on the youtube videos that are in the embedded player.
+<br>
+<br>
 
-NOTE:
+## NOTES:
 
 All transcripts are taken from the courses uploaded to Leons Youtube channel, so
 be warned! The automatic captioning software Youtube uses to caption these videos
