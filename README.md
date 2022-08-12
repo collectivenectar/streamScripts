@@ -15,7 +15,7 @@ This app was built using mongoDB, node.js, express.js, and EJS.
 
 Here is a screenshot of what's at => leonstreamscripts.herokuapp.com
 
-<img src="https://github.com/collectivenectar/streamScripts/blob/ccf6e328aa6f1bb51474dc468dd78b9380ab8f18/leonstreamscripts.png?raw=true" width="1000" height="560">
+<img src="https://github.com/collectivenectar/streamScripts/blob/73c83ccfafc1692ec41723f264a1805ff9d5400c/leonstreamscripts.png" width="1000" height="560">
 
 How does it work?
 
