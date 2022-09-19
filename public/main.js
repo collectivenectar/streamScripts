@@ -42,7 +42,11 @@ const courseURLSuffix = {
   38: "000ai6I6Aow",
   39: "zHq0v5RD_Zk",
   40: "3eafTTnEfMw",
-  41: "LHf_STV_rLE"
+  41: "LHf_STV_rLE",
+  44: "jZ-kmmgi_d0",
+  45: "jZ-kmmgi_d0",
+  46: "SVX_HMum0n4",
+  47: "SVX_HMum0n4",
 }
 
 for(let player = 0; player < playerButtons.length; player++){
@@ -54,7 +58,6 @@ function changePlayerUrl(eventT){
   let courseInfo = eventT.target.getAttribute('data-urlString').split("-")
   let courseNum = courseInfo[0]
   let courseTimeStamp = timeStampToMinutes(courseInfo[1])
-  console.log("test")
   iframeElement.src = `${courseURLPrefix}${courseURLSuffix[courseNum]}?start=${courseTimeStamp}&origin=https://leonstreamscripts.herokuapp.com`
   return false
 }
