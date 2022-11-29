@@ -18,34 +18,15 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-
-// connect to db using fixie SOCKS proxy
-
-mongoose.connect(process.env.DB_CONNECTION,
-    {useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverApi: mongodb.ServerApiVersion.v1,
-      proxyUsername: fixieData[0],
-      proxyPassword: fixieData[1],
-      proxyHost: fixieData[2],
-      proxyPort: fixieData[3]},
-    (error) => {
-      if(error){
-        console.log(error)
-      }
-      console.log('Connected to database')}
-)
-
-// no proxy setup
-// mongoose.connect(process.env.DB_CONNECTION, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// }, (error) => {
-//   if(error){
-//     console.log(error)
-//   }
-//   console.log("Connected to database")
-// })
+mongoose.connect(process.env.DB_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}, (error) => {
+  if(error){
+    console.log(error)
+  }
+  console.log("Connected to database")
+})
 
 // ROUTES
 
