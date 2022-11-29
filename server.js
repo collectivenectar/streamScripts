@@ -8,7 +8,6 @@ const Transcript = require('./models/transcriptModel.js')
 const path = require('path')
 const mongodb = require('mongodb');
 require('dotenv').config()
-const fixieData = process.env.FIXIE_SOCKS_HOST.split(new RegExp('[/(:\\/@/]+'));
 
 // set up middleware
 
