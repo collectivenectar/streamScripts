@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
 const mainRoutes = require('./routes/main.js');
+const searchRoutes = require('./routes/search.js');
 const path = require('path');
 require('dotenv').config();
 
@@ -33,7 +34,8 @@ mongoose.connect(
 
 // ROUTES
 
-app.use('/', mainRoutes)
+app.use('/', mainRoutes);
+app.use('/search', searchRoutes);
 
 // listen to routes
 
