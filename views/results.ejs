@@ -1,124 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
     <title>LeonStreamScripts</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Source+Serif+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="/style.css"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Source+Serif+Pro:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body id="main">
     <section id="search-panel">
       <h2 class="title-font">Search</h2>
       <section class="search all-ordered">
- 			    <h2 class="search-label title-font" >by exact phrase</h2>
- 			    <section class="form-container">
- 					       <form action="/search/entry/allOrdered" method="GET" class="search-form all-ordered">
-                    <label for="all-ordered-search"></label>
- 						       <input class="search-input" type="text" name="entry" value="" placeholder="enter text here">
-                    <input class="hidden" name="page" value="1">
- 						       <button class="button-search" type="submit">Search</button>
- 						     </form>
- 				     </section>
- 		 </section>
+        <h2 class="search-label title-font">by exact phrase</h2>
+        <section class="form-container">
+          <form
+            action="/search/entry/allOrdered"
+            method="GET"
+            class="search-form all-ordered"
+          >
+            <label for="all-ordered-search"></label>
+            <input
+              class="search-input"
+              type="text"
+              name="entry"
+              value=""
+              placeholder="enter text here"
+            />
+            <input
+              class="hidden"
+              name="page"
+              value="1"
+            />
+            <button
+              class="button-search"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </section>
+      </section>
       <section class="search all-unordered">
-   	    <h2 class="search-label title-font" >words appearing together in the same entry</h2>
-   			<section class="form-container">
-   					<form action="/search/entry/allUnordered" method="GET" class="search-form all-unordered">
-               <label for="all-unordered-search"></label>
-   						<input class="search-input" type="text" name="entry" value="" placeholder="enter text here">
-               <input class="hidden" name="page" value="1">
-   						<button class="button-search" type="submit">Search</button>
-   						</form>
-   				</section>
-   		</section>
-       <section class="search course-number">
-     			<h2 class="search-label title-font" >browse by course number</h2>
-     			<section class="form-container">
-     					<form action="/search/timestamp/byCourseNumber" method="GET" class="search-form course-number">
-                 <label for="selected-course">Select a Course Number to see all captions</label>
-     						<div class="course-radio-container">
-                  <label><input class="radio" type="radio" name="entry" value="1">1 - Become A Software Engineer</label>
-                  <label><input class="radio" type="radio" name="entry" value="2">2 - Learn HTML</label>
-                  <label><input class="radio" type="radio" name="entry" value="3">3 - Learn More HTML</label>
-                  <label><input class="radio" type="radio" name="entry" value="4">4 - Learn CSS</label>
-                  <label><input class="radio" type="radio" name="entry" value="5">5 - Learn CSS Layout</label>
-                  <label><input class="radio" type="radio" name="entry" value="6">6 - Let's Review HTML & CSS</label>
-                  <label><input class="radio" type="radio" name="entry" value="7">7 - Learn Responsive CSS</label>
-                  <label><input class="radio" type="radio" name="entry" value="8">8 - Write Bad CSS</label>
-                  <label><input class="radio" type="radio" name="entry" value="9">9 - Networking Night</label>
-                  <label><input class="radio" type="radio" name="entry" value="10">10 - Rant & Review</label>
-                  <label><input class="radio" type="radio" name="entry" value="11">11 - Learn CSS Layout & Flexbox</label>
-                  <label><input class="radio" type="radio" name="entry" value="12">12 - Learn Javascript</label>
-                  <label><input class="radio" type="radio" name="entry" value="13">13 - Fun Javascript Examples</label>
-                  <label><input class="radio" type="radio" name="entry" value="14">14 - Javascript Functions For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="15">15 - How To Start Freelancing</label>
-                  <label><input class="radio" type="radio" name="entry" value="16">16 - Learn Javascript Loops</label>
-                  <label><input class="radio" type="radio" name="entry" value="19">19 - Learn Javascript Arrays</label>
-                  <label><input class="radio" type="radio" name="entry" value="20">20 - Practice Javascript Arrays</label>
-                  <label><input class="radio" type="radio" name="entry" value="21">21 - Learn Javascript Objects</label>
-                  <label><input class="radio" type="radio" name="entry" value="22">22 - Practice Javascript Objects</label>
-                  <label><input class="radio" type="radio" name="entry" value="23">23 - Javascript APIs For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="24">24 - Git And Github For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="25">25 - Fix Your Resume So You Get Tech Interviews</label>
-                  <label><input class="radio" type="radio" name="entry" value="26">26 - Build a Simple App Using APIs - Beginner Friendly</label>
-                  <label><input class="radio" type="radio" name="entry" value="27">27 - Get Data From NASA! Simple Javascript API</label>
-                  <label><input class="radio" type="radio" name="entry" value="28">28 - Javascript API Practice For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="29">29 - Review The Basics Of Javascript</label>
-                  <label><input class="radio" type="radio" name="entry" value="30">30 - OOP But It Actually Makes Sense</label>
-                  <label><input class="radio" type="radio" name="entry" value="31">31 - What Is Inheritance & Polymorphism</label>
-                  <label><input class="radio" type="radio" name="entry" value="32">32 - Object Oriented Programming w/ JS Review</label>
-                  <label><input class="radio" type="radio" name="entry" value="33">33 - Why You Are Not Getting Interviews! Secrets To Landing Your First Tech Job</label>
-                  <label><input class="radio" type="radio" name="entry" value="34">34 - Crush Your Technical Interviews! Secrets To Landing Your First Tech Job</label>
-                  <label><input class="radio" type="radio" name="entry" value="35">35 - Easy Intro To Node, Promises & Async / Await</label>
-                  <label><input class="radio" type="radio" name="entry" value="36">36 - Javascipt Event Loop For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="37">37 - No Express ! Fullstack App Just Node</label>
-                  <label><input class="radio" type="radio" name="entry" value="38">38 - Build Your Own API HOSTED On Heroku</label>
-                  <label><input class="radio" type="radio" name="entry" value="39">39 - CRUD APIs For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="40">40 - What Is MongoDB? CRUD Apps For Beginners</label>
-                  <label><input class="radio" type="radio" name="entry" value="41">41 - Build A Simple CRUD App With Express, MongoDB, & EJS</label>
-                  <label><input class="radio" type="radio" name="entry" value="44">44 - Part 1 - How To Build Fullstack Apps With Javascript! Easy To Understand!</label>
-                  <label><input class="radio" type="radio" name="entry" value="45">45 - Part 2 - How To Build Fullstack Apps With Javascript! Easy To Understand!</label>
-                  <label><input class="radio" type="radio" name="entry" value="46">46 - Part 1 - Build A Node.js MVC App! Complete Easy Walkthrough!</label>
-                  <label><input class="radio" type="radio" name="entry" value="47">47 - Part 2 - Build A Node.js MVC App! Complete Easy Walkthrough! </label>
-                 </div>
-                 <input class="hidden" name="page" value="1">
-     						<button class="button-search" type="submit">Browse</button>
-     						</form>
-     				</section>
-     		</section>
+        <h2 class="search-label title-font">
+          words appearing together in the same entry
+        </h2>
+        <section class="form-container">
+          <form
+            action="/search/entry/allUnordered"
+            method="GET"
+            class="search-form all-unordered"
+          >
+            <label for="all-unordered-search"></label>
+            <input
+              class="search-input"
+              type="text"
+              name="entry"
+              value=""
+              placeholder="enter text here"
+            />
+            <input
+              class="hidden"
+              name="page"
+              value="1"
+            />
+            <button
+              class="button-search"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
+        </section>
+      </section>
+      <section class="search course-number">
+        <h2 class="search-label title-font">browse by course number</h2>
+        <section class="form-container">
+          <form
+            action="/search/timestamp/byCourseNumber"
+            method="GET"
+            class="search-form course-number"
+          >
+            <label for="selected-course"
+              >Select a Course Number to see all captions</label
+            >
+            <div class="course-radio-container">
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="1"
+                />1 - Become A Software Engineer</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="2"
+                />2 - Learn HTML</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="3"
+                />3 - Learn More HTML</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="4"
+                />4 - Learn CSS</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="5"
+                />5 - Learn CSS Layout</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="6"
+                />6 - Let's Review HTML & CSS</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="7"
+                />7 - Learn Responsive CSS</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="8"
+                />8 - Write Bad CSS</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="9"
+                />9 - Networking Night</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="10"
+                />10 - Rant & Review</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="11"
+                />11 - Learn CSS Layout & Flexbox</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="12"
+                />12 - Learn Javascript</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="13"
+                />13 - Fun Javascript Examples</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="14"
+                />14 - Javascript Functions For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="15"
+                />15 - How To Start Freelancing</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="16"
+                />16 - Learn Javascript Loops</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="19"
+                />19 - Learn Javascript Arrays</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="20"
+                />20 - Practice Javascript Arrays</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="21"
+                />21 - Learn Javascript Objects</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="22"
+                />22 - Practice Javascript Objects</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="23"
+                />23 - Javascript APIs For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="24"
+                />24 - Git And Github For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="25"
+                />25 - Fix Your Resume So You Get Tech Interviews</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="26"
+                />26 - Build a Simple App Using APIs - Beginner Friendly</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="27"
+                />27 - Get Data From NASA! Simple Javascript API</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="28"
+                />28 - Javascript API Practice For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="29"
+                />29 - Review The Basics Of Javascript</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="30"
+                />30 - OOP But It Actually Makes Sense</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="31"
+                />31 - What Is Inheritance & Polymorphism</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="32"
+                />32 - Object Oriented Programming w/ JS Review</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="33"
+                />33 - Why You Are Not Getting Interviews! Secrets To Landing
+                Your First Tech Job</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="34"
+                />34 - Crush Your Technical Interviews! Secrets To Landing Your
+                First Tech Job</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="35"
+                />35 - Easy Intro To Node, Promises & Async / Await</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="36"
+                />36 - Javascipt Event Loop For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="37"
+                />37 - No Express ! Fullstack App Just Node</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="38"
+                />38 - Build Your Own API HOSTED On Heroku</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="39"
+                />39 - CRUD APIs For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="40"
+                />40 - What Is MongoDB? CRUD Apps For Beginners</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="41"
+                />41 - Build A Simple CRUD App With Express, MongoDB, &
+                EJS</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="44"
+                />44 - Part 1 - How To Build Fullstack Apps With Javascript!
+                Easy To Understand!</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="45"
+                />45 - Part 2 - How To Build Fullstack Apps With Javascript!
+                Easy To Understand!</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="46"
+                />46 - Part 1 - Build A Node.js MVC App! Complete Easy
+                Walkthrough!</label
+              >
+              <label
+                ><input
+                  class="radio"
+                  type="radio"
+                  name="entry"
+                  value="47"
+                />47 - Part 2 - Build A Node.js MVC App! Complete Easy
+                Walkthrough!
+              </label>
+            </div>
+            <input
+              class="hidden"
+              name="page"
+              value="1"
+            />
+            <button
+              class="button-search"
+              type="submit"
+            >
+              Browse
+            </button>
+          </form>
+        </section>
+      </section>
     </section>
     <section id="main-right">
       <nav>
-        <a href="/" class="title-font" >LeonStreamScripts</a>
+        <a
+          href="/"
+          class="title-font"
+          >LeonStreamScripts</a
+        >
         <a href="https://github.com/collectivenectar">developer</a>
       </nav>
       <section id="results">
         <section id="player-container">
-          <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0?origin=https://leonstreamscrips.herokuapp.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube-nocookie.com/embed/o3IIobN4xR0?origin=https://leonstreamscrips.herokuapp.com"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </section>
-        <h2 class="title-font"><%= `${count}` %> results for <%= `'${entry}'` %>:</h2>
-        <div id=results-navigation>
+        <h2 class="title-font">
+          <%= `${count}` %> results for <%= `'${entry}'` %>:
+        </h2>
+        <div id="results-navigation">
           <!-- if the response has results in it: -->
           <% if (pages > 0) { %>
-            <ul class="pagination">
+          <ul class="pagination">
             <!-- if this page is the first page of results, disable nav to first -->
             <% if (current == 1) { %>
-              <!-- nested directory link needs route + entry + page -->
-              <!--  -->
-              <li class="disabled page-nav"><a>First</a></li>
-              <!-- If this page is not the first page, provide a link to first -->
+            <!-- nested directory link needs route + entry + page -->
+            <!--  -->
+            <li class="disabled page-nav"><a>First</a></li>
+            <!-- If this page is not the first page, provide a link to first -->
             <% } else { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${1}` %>">First</a></li>
+            <li class="page-nav">
+              <a href="<%= `${urlBase}?entry=${entry}&page=${1}` %>">First</a>
+            </li>
             <% } %>
             <!-- if this page is not the first page, provide a link to previous -->
             <% if (Number(current) - 1 > 0) { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${Number(current) - 1}` %>">Prev</a></li>
+            <li class="page-nav">
+              <a
+                href="<%= `${urlBase}?entry=${entry}&page=${Number(current) - 1}` %>"
+                >Prev</a
+              >
+            </li>
             <% } else { %>
-              <!-- if this page is the first page, disable the nav to previous -->
-              <li class="disabled page-nav"><a>Prev</a></li>
+            <!-- if this page is the first page, disable the nav to previous -->
+            <li class="disabled page-nav"><a>Prev</a></li>
             <% } %>
             <!-- this paginates 5 nav options in the center, and puts current page -->
             <!-- at the end of the options. -->
@@ -128,78 +528,94 @@
             <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
             <!-- if the current page is greater than 5, don't show '...' -->
             <% if (i !== 1) { %>
-              <li class="disabled page-nav"><a>...</a></li>
+            <li class="disabled page-nav"><a>...</a></li>
             <% } %>
             <!-- begin looping through to create page numbers for the middle -->
             <!-- starting from i, and going to the current page + 4, provided-->
             <!-- we aren't already at the end of the results -->
             <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-              <!-- if the loop is at the current page value, disable the link -->
-              <% if (i == current) { %>
-                <li class="disabled page-nav"><a><%= i %></a></li>
-                <!-- otherwise provide a link for that page number -->
-              <% } else { %>
-                <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${i}` %>"><%= i %></a></li>
-              <% } %>
-              <!-- if the loop is at the end and there are still more pages, -->
-              <!-- show the '...' at the end -->
-              <% if (i == Number(current) + 4 && i < pages) { %>
-                <li class="disabled page-nav"><a>...</a></li>
-              <% } %>
+            <!-- if the loop is at the current page value, disable the link -->
+            <% if (i == current) { %>
+            <li class="disabled page-nav"><a><%= i %></a></li>
+            <!-- otherwise provide a link for that page number -->
+            <% } else { %>
+            <li class="page-nav">
+              <a href="<%= `${urlBase}?entry=${entry}&page=${i}` %>"
+                ><%= i %></a
+              >
+            </li>
             <% } %>
+            <!-- if the loop is at the end and there are still more pages, -->
+            <!-- show the '...' at the end -->
+            <% if (i == Number(current) + 4 && i < pages) { %>
+            <li class="disabled page-nav"><a>...</a></li>
+            <% } %> <% } %>
             <!-- end of the numbers loop, now adding next and last logic -->
             <!-- if not at the end of results, provide a next link -->
             <% if (Number(current) + 1 <= pages) { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${Number(current) + 1}` %>">Next</a></li>
-              <!-- otherwise disable the next link -->
+            <li class="page-nav">
+              <a
+                href="<%= `${urlBase}?entry=${entry}&page=${Number(current) + 1}` %>"
+                >Next</a
+              >
+            </li>
+            <!-- otherwise disable the next link -->
             <% } else { %>
-              <li class="disabled page-nav"><a>Next</a></li>
+            <li class="disabled page-nav"><a>Next</a></li>
             <% } %>
             <!-- if at the end of results, disable the last link -->
             <% if (Number(current) == pages) { %>
-              <li class="disabled page-nav"><a>Last</a></li>
-              <!-- otherwise provide a last link -->
+            <li class="disabled page-nav"><a>Last</a></li>
+            <!-- otherwise provide a last link -->
             <% } else { %>
-              <li class="page-nav"><a href="<%= `${urlBase}?entry=${entry}&page=${pages}` %>">Last</a></li>
-              <% } %>
-            </ul>
+            <li class="page-nav">
+              <a href="<%= `${urlBase}?entry=${entry}&page=${pages}` %>"
+                >Last</a
+              >
+            </li>
+            <% } %>
+          </ul>
           <% } %>
         </div>
         <section id="results-container">
-            <ul class="transcriptsList">
-              <!-- loop to populate the results -->
-              <% if (count == 0) {%>
-
-              <% } else { %>
-
-              <% transcripts.forEach(transcript => { %>
-                <!-- parsing the course info from the timestamp by splitting, -->
-                <% let split = transcript.timestamp.split("-") %>
-                <!-- then pulling the first element to get course number from the split -->
-                <% let courseNumber = split[0] %>
-                <!-- then pulling the second element to get timestamp from the split -->
-                <% let courseTimeStamp = split[1] %>
-                <li class="transcript">
-                  <!-- putting course info as a formatted string literal into variable -->
-                  <% let courseInfo = courseNumber === "0"? "": `Course ${courseNumber}, at ${courseTimeStamp}`; %>
-                  <!-- pushing course info into the inner text -->
-                  <div class="course-info">
-                    <ul>
-                      <li>Course <%= `${courseNumber}` %></li>
-                      <li><%= `${courseTimeStamp}` %></li>
-                    </ul>
-                  </div>
-                  <!-- pushing the transcript text into the inner text -->
-                  <div class="caption"><%= `${transcript.entry}` %></div>
-                  <div class="play-container">
-                    <a class="play-video" onClick="console.log()" href="" data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>">Go to this section</a>
-                  </div>
-                </li>
-                <% })} %>
-            </ul>
+          <ul class="transcriptsList">
+            <!-- loop to populate the results -->
+            <% if (count == 0) {%> <% } else { %> <%
+            transcripts.forEach(transcript => { %>
+            <!-- parsing the course info from the timestamp by splitting, -->
+            <% let split = transcript.timestamp.split("-") %>
+            <!-- then pulling the first element to get course number from the split -->
+            <% let courseNumber = split[0] %>
+            <!-- then pulling the second element to get timestamp from the split -->
+            <% let courseTimeStamp = split[1] %>
+            <li class="transcript">
+              <!-- putting course info as a formatted string literal into variable -->
+              <% let courseInfo = courseNumber === "0"? "": `Course
+              ${courseNumber}, at ${courseTimeStamp}`; %>
+              <!-- pushing course info into the inner text -->
+              <div class="course-info">
+                <ul>
+                  <li>Course <%= `${courseNumber}` %></li>
+                  <li><%= `${courseTimeStamp}` %></li>
+                </ul>
+              </div>
+              <!-- pushing the transcript text into the inner text -->
+              <div class="caption"><%= `${transcript.entry}` %></div>
+              <div class="play-container">
+                <a
+                  class="play-video"
+                  onClick="console.log()"
+                  href=""
+                  data-urlString="<%= `${courseNumber}-${courseTimeStamp}` %>"
+                  >Go to this section</a
+                >
+              </div>
+            </li>
+            <% })} %>
+          </ul>
         </section>
       </section>
     </section>
-    <script src="/main.js" /></script>
+    <script src="/main.js" />
   </body>
 </html>
