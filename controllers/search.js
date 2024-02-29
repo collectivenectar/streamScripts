@@ -1,7 +1,7 @@
 const Transcript = require('../models/transcriptModel');
 
 module.exports = {
-  root: async (req, res) => {
+  root: async (request, response) => {
     try {
       response.render('index.ejs');
     } catch (err) {
@@ -29,7 +29,7 @@ module.exports = {
       .limit(perPage)
       .exec((error, transcriptsList) => {
         Transcript.countDocuments(query).exec((error, count) => {
-          if (error) return next(error);
+          if (error) return response.status(500).send(error);
           if (count === 0) {
             response.render('results.ejs', {
               transcripts: {
