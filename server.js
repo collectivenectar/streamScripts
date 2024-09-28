@@ -20,10 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
   process.env.DB_CONNECTION,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
+  {useNewUrlParser: true, dbName: '100Devs'},
   (error) => {
     if (error) {
       console.log(error);

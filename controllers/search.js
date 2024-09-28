@@ -31,7 +31,6 @@ module.exports = {
         Transcript.countDocuments(query).exec((error, count) => {
           if (error) return response.status(500).send(error);
           if (count === 0) {
-            console.log("no results count")
             response.render('results.ejs', {
               transcripts: {
                 timestamp: '0-0',
@@ -45,7 +44,6 @@ module.exports = {
               count: 0,
             });
           } else {
-            console.log("results returns")
             response.render('results.ejs', {
               transcripts: transcriptsList,
               current: page,
